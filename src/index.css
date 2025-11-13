@@ -2,17 +2,152 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-The @apply directive should not be used with the group utility class.
-*/
+/* Pop Art Design System */
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Permanent+Marker&family=Inter:wght@400;600;700&display=swap');
 
 @layer base {
   :root {
-   
+    /* Pop Art Colors - Vibrant Orange & Pink */
+    --background: 25 100% 60%; /* Vibrant Orange */
+    --foreground: 0 0% 10%; /* Near Black */
+
+    --primary: 330 100% 65%; /* Hot Pink */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 45 100% 55%; /* Electric Yellow */
+    --secondary-foreground: 0 0% 10%;
+
+    --accent: 280 100% 65%; /* Purple */
+    --accent-foreground: 0 0% 100%;
+
+    --muted: 25 50% 85%; /* Light Orange */
+    --muted-foreground: 0 0% 40%;
+
+    --card: 0 0% 100%; /* White */
+    --card-foreground: 0 0% 10%;
+
+    --border: 0 0% 10%;
+    --input: 0 0% 100%;
+    --ring: 330 100% 65%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
+
+    --radius: 0.5rem;
   }
 
-  .dark {
+  body {
+    font-family: 'Inter', sans-serif;
+  }
 
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Bangers', cursive;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+}
+
+@layer utilities {
+  /* Comic Dots Pattern */
+  .dots-pattern {
+    background-image:
+      radial-gradient(circle, rgba(0,0,0,0.15) 2px, transparent 2px);
+    background-size: 20px 20px;
+    background-position: 0 0, 10px 10px;
+  }
+
+  .dots-pattern-pink {
+    background-image:
+      radial-gradient(circle, rgba(255,255,255,0.3) 2px, transparent 2px);
+    background-size: 15px 15px;
+  }
+
+  /* Pop Art Shadow */
+  .pop-shadow {
+    box-shadow:
+      4px 4px 0px 0px rgba(0,0,0,1),
+      8px 8px 0px 0px hsl(var(--primary));
+  }
+
+  .pop-shadow-yellow {
+    box-shadow:
+      4px 4px 0px 0px rgba(0,0,0,1),
+      8px 8px 0px 0px hsl(var(--secondary));
+  }
+
+  /* Hand-drawn Border */
+  .comic-border {
+    border: 4px solid rgba(0,0,0,1);
+    position: relative;
+  }
+
+  .comic-border::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border: 2px solid rgba(0,0,0,0.3);
+    pointer-events: none;
+  }
+
+  /* Handwritten Font Class */
+  .handwritten {
+    font-family: 'Permanent Marker', cursive;
+  }
+
+  /* Title Font */
+  .title-font {
+    font-family: 'Bangers', cursive;
+  }
+}
+
+@layer components {
+  /* Bounce Animation for Buttons */
+  @keyframes bounce-pop {
+    0%, 100% {
+      transform: translateY(0) rotate(0deg);
+    }
+    25% {
+      transform: translateY(-8px) rotate(-2deg);
+    }
+    75% {
+      transform: translateY(-4px) rotate(2deg);
+    }
+  }
+
+  @keyframes wiggle {
+    0%, 100% {
+      transform: rotate(-1deg);
+    }
+    50% {
+      transform: rotate(1deg);
+    }
+  }
+
+  @keyframes pulse-shadow {
+    0%, 100% {
+      box-shadow:
+        4px 4px 0px 0px rgba(0,0,0,1),
+        8px 8px 0px 0px hsl(var(--primary));
+    }
+    50% {
+      box-shadow:
+        6px 6px 0px 0px rgba(0,0,0,1),
+        12px 12px 0px 0px hsl(var(--primary));
+    }
+  }
+
+  .animate-bounce-pop {
+    animation: bounce-pop 0.6s ease-in-out;
+  }
+
+  .animate-wiggle {
+    animation: wiggle 2s ease-in-out infinite;
+  }
+
+  .animate-pulse-shadow {
+    animation: pulse-shadow 2s ease-in-out infinite;
   }
 }
